@@ -212,7 +212,7 @@ header {
   z-index: 10000;
   transform: translate(-50%, -50%);
   line-height: 15px;
-  top: -10%;
+  top: 0%;
   left: -15%;
 }
 
@@ -691,19 +691,19 @@ header {
 }
 
 .slider-item01 {
-  background-image: url(../img/new/fv-1.jpeg);
+  background-image: url({{ 'fv-01.jpeg' | asset_img_url: '3000x' }});
 }
 
 .slider-item02 {
-  background-image: url(../img/new/fv-2.jpeg);
+  background-image: url({{ 'fv-2.jpeg' | asset_img_url: '3000x' }});
 }
 
 .slider-item03 {
-  background-image: url(../img/new/fv-3.jpeg);
+  background-image: url({{ 'fv-3.jpeg' | asset_img_url: '3000x' }});
 }
 
 .slider-item04 {
-  background-image: url(../img/new/fv-4.jpeg);
+  background-image: url({{ 'fv-4.jpeg' | asset_img_url: '3000x' }});
 }
 
 /*矢印の設定*/
