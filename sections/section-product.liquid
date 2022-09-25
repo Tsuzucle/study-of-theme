@@ -26,12 +26,19 @@
 
         <input type="hidden" name="id" value={{ product.variants.first.id }}>
 
-        <button href="#" class="Btn02 bgleft02">
-          <span>カートに追加する</span>
-        </button>
-        <a href="/product.html" class="link__detail">詳細を見る</a>
-      </div>
+        {% assign current_variant = product.selected_or_first_available_variant %}
+        {% if current_variant.inventory_quantity > 0 %}
+          <button href="#" class="Btn02 bgleft02">
+            <span>カートに追加する</span>
+          </button>
+          {% if current_variant.inventory_quantity < 10 %}
+            <span style="color: red;">残り在庫{{ current_variant.inventory_quantity }}個です</span>
+          {% endif %}
+        {% else %}
+        <div class ="Btn02"><span>在庫なし</span></div>
+        {% endif %}
       </form>
+      <a href="{{ product.url }}" class="link__detail">詳細を見る</a>
         <!-- <div class="counter">
           <span><i class="fas fa-minus"></i></span>
           <span>1</span>
