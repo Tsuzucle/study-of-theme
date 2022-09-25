@@ -2,7 +2,11 @@
     <div class="items-wrapper flex">
         {% for block in section.blocks %}
         {% assign collection = block.settings.collection %}
+<<<<<<< HEAD
         <a href="{{ collection.url }}" class="item" style="background-image: url({{ collection.featured_image }}); ;">
+=======
+        <a href="{{ collection.url }}" class="item" style="background-image: url({{ collection.image | image_url }});">
+>>>>>>> ab233e8 (コレクションリストセクションの作成)
             <div class="item__content">
               <h3>NEW COLLECTION</h3>
               <div class="Btn bgleft bgleft03">
