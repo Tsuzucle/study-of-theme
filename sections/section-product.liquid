@@ -13,7 +13,26 @@
             {{ product.content }}
           </p>
         </div>
-        <div class="counter">
+
+        <form method="post" action="/cart/add" enctype="multipart/form-data">
+
+          <div class="qtydiv counter">
+            <div class="qtybox">
+              <span class="btnqty qtyminus icon icon-minus"><i class="fas fa-minus"></i></span>
+              <span><input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector quantity-input" readonly=""></span>
+              <span class="btnqty qtyplus icon icon-plus"><i class="fas fa-plus"></i></span>
+            </div>
+        </div>
+
+        <input type="hidden" name="id" value={{ product.variants.first.id }}>
+
+        <button href="#" class="Btn02 bgleft02">
+          <span>カートに追加する</span>
+        </button>
+        <a href="/product.html" class="link__detail">詳細を見る</a>
+      </div>
+      </form>
+        <!-- <div class="counter">
           <span><i class="fas fa-minus"></i></span>
           <span>1</span>
           <span><i class="fas fa-plus"></i></span>
@@ -22,7 +41,7 @@
           <span>カートに追加する</span>
         </button>
         <a href="/product.html" class="link__detail">詳細を見る</a>
-      </div>
+      </div> -->
     </div>
 
       <!-- <img src="img/new/product-3.webp" alt="" class="img">
