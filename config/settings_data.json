@@ -241,6 +241,50 @@
         "settings": {
           "toppage_product": "商品3"
         }
+      },
+      "section-collection-list": {
+        "type": "section-collection-list",
+        "blocks": {
+          "4743eb46-eae1-4ddf-8c14-87485cbb0aa8": {
+            "type": "featured_collection",
+            "settings": {
+              "toppage_collection": "トップページコレクション"
+            }
+          },
+          "1dd3303c-c4da-40a7-9331-6416f99ed181": {
+            "type": "featured_collection",
+            "settings": {
+              "toppage_collection": ""
+            }
+          },
+          "d32d86f9-5735-4bcf-a17a-358490174cb3": {
+            "type": "featured_collection",
+            "settings": {
+              "toppage_collection": ""
+            }
+          },
+          "cdd2713a-7c77-460d-b43d-3f7f94c99962": {
+            "type": "featured_collection",
+            "settings": {
+              "toppage_collection": ""
+            }
+          },
+          "dd609315-663f-4d44-9ef1-ae52ba17829d": {
+            "type": "featured_collection",
+            "settings": {
+              "toppage_collection": ""
+            }
+          }
+        },
+        "block_order": [
+          "4743eb46-eae1-4ddf-8c14-87485cbb0aa8",
+          "1dd3303c-c4da-40a7-9331-6416f99ed181",
+          "d32d86f9-5735-4bcf-a17a-358490174cb3",
+          "cdd2713a-7c77-460d-b43d-3f7f94c99962",
+          "dd609315-663f-4d44-9ef1-ae52ba17829d"
+        ],
+        "settings": {
+        }
       }
     },
     "content_for_index": [
