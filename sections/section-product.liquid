@@ -23,9 +23,9 @@
               <span class="btnqty qtyplus icon icon-plus"><i class="fas fa-plus"></i></span>
             </div>
         </div>
-
+      
         <input type="hidden" name="id" value={{ product.variants.first.id }}>
-
+      
         {% assign current_variant = product.selected_or_first_available_variant %}
         {% if current_variant.inventory_quantity > 0 %}
           <button href="#" class="Btn02 bgleft02">
@@ -38,7 +38,9 @@
         <div class ="Btn02"><span>在庫なし</span></div>
         {% endif %}
       </form>
-      <a href="{{ product.url }}" class="link__detail">詳細を見る</a>
+
+        <a href="{{ product.url }}" class="link__detail">詳細を見る</a>
+
         <!-- <div class="counter">
           <span><i class="fas fa-minus"></i></span>
           <span>1</span>
