@@ -4,13 +4,13 @@
       <div class="product__post">
         <div class="ProductImage">
           <ul class="gallery">
-            {% for big_image in product.images %}
-              <li><img src="{{ big_image.src | img_url: 'large' }}" alt=""></li>
+            {% for image in product.images %}
+              <li><img src="{{ image.src | img_url: 'large' }}" alt=""></li>
             {% endfor %}
           </ul>
           <ul class="choice-btn flex slideItemImage">
-            {% for small_image in product.images %}
-              <li><img src="{{ small_image.src | img_url: 'large' }}" alt=""></li>
+            {% for image in product.images %}
+              <li><img src="{{ image.src | img_url: 'large' }}" alt=""></li>
             {% endfor %}
           </ul>
         </div>
