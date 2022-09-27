@@ -70,7 +70,7 @@
   {% endif %}
 </form>
 
-        <p class="alert">あと<span>7時間0分</span>以内のご注文確定で{{ 'today' | date: '%m月%d日' }}〜{{ 'today' | date: '%s' | plus: 259200 | date: '%m月%d日' }}</p>
+        <p class="alert">あと<span>7時間</span>以内のご注文確定で{{ 'today' | date: '%m月%d日' }}〜{{ 'today' | date: '%s' | plus: 86400 | date: '%m月%d日' }}の間に配送</p>
       </div>
       </div>
     </div>
