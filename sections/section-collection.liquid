@@ -1,5 +1,4 @@
-
-    <div class="collection-wrap flex">
+  <div class="collection-wrap flex">
         {% assign collection = collections[section.settings.toppage_collection]%}
         {% paginate collection.products by 4 %}
         {% for product in collection.products %}
@@ -39,7 +38,7 @@
 
     </div>
 
-    <a href="#" class="Btn02 bgleft02"><span>もっと見る</span></a>
+    <a href="{{ collection.url }}" class="Btn02 bgleft02"><span>もっと見る</span></a>
 
   </section>
   
