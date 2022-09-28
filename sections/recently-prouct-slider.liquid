@@ -28,14 +28,22 @@
     {%- comment -%} 商品カード {%- endcomment -%}
     {% raw %}
       <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
-        {% for product in collection.products %}
-        <a href="{{ product.url | within: collection }}" class="product_card">
-          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="">
-          <h3>{{ product.title }}</h3>
-          <p class="price">{{ product.price | money }}</p>
-          <p class="Btn bgleft"><span>詳細を見る</span></p>
-        </a>
-  {% else %}
+        <li class="featured-collection-slider__item collection-slider__item">
+          <div class="product-card">
+            <a href="${url}" class="product-card__link">
+              <div class="product-card__head">
+                <img src="${Shopify.Products.resizeImage(featured_image, "master")}" alt="${title}">
+              </div>
+              <div class="product-card__body">
+                <h3 class="product-card__title">${title}</h3>
+                <p class="product-card__price">
+                  ${(price / 100).toLocaleString()}
+                  <span class="tax">（税込）</span>
+                </p>
+              </div>
+            </a>
+          </div>
+        </li>
       </script>
     {% endraw %}
   
