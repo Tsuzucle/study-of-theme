@@ -18,6 +18,7 @@
         </div> -->
 
   <div class="collection-wrap flex">
+    {% paginate collection.products by 4 %}
     {% for product in collection.products %}
         <a href="{{ product.url | within: collection }}" class="product_card">
           <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="">
@@ -28,7 +29,15 @@
   {% else %}
       <p>お探しの商品は見つかりませんでした。</p>
   {% endfor %}
+  {% endpaginate %}
 </div>
+
+{% if paginate.pages > 1 %}
+<nav aria-label="Page navigation example" class="pagination_nav">
+  {{ paginate | default_pagination: next: '»', previous: '«' }}
+</nav>
+{% endif %}
+{% endpaginate %}
 
 
         <!-- <div class="collection-wrap flex">
@@ -90,8 +99,6 @@
         </div>
       </div>
     </section> -->
-
-    {% section 'recently-prouct-slider' %}
 
     <!-- <section class="recommend sec">
       <h2>最近見た商品</h2>
