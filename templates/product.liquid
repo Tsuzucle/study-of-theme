@@ -39,13 +39,12 @@
 
 <form method="post" action="/cart/add" enctype="multipart/form-data">
 
-  <div class="product__wrap">
-    <label for="#">お渡し用袋</label>
-    <select name="" id="">
-      <option value="不要">不要</option>
-      <option value="要">要</option>
-    </select>
-  </div>
+  <select name="id">
+    {%- for variant in product.variants -%}
+      <option value="{{ variant.id }}">{{ variant.title | escape }}</option>
+    {%- endfor -%}
+  </select>
+
 
     <div class="qtydiv counter">
       <div class="qtybox">
