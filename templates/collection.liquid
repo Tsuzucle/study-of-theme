@@ -17,19 +17,18 @@
           </div>
         </div> -->
 
-
-        {% for product in collection.products %}
-    <div>
-      <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
-      {{ product.price | money }}
-      {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
-      <a href="{{ product.url | within: collection }}">
-        <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
-      </a>
-    </div>
+  <div class="collection-wrap flex">
+    {% for product in collection.products %}
+        <a href="{{ product.url | within: collection }}" class="product_card">
+          <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="">
+          <h3>{{ product.title }}</h3>
+          <p class="price">{{ product.price | money }}</p>
+          <p class="Btn bgleft"><span>詳細を見る</span></p>
+        </a>
   {% else %}
-    <p>no matches</p>
+      <p>お探しの商品は見つかりませんでした。</p>
   {% endfor %}
+</div>
 
 
         <!-- <div class="collection-wrap flex">
@@ -92,7 +91,9 @@
       </div>
     </section> -->
 
-    <section class="recommend sec">
+    {% section 'recently-prouct-slider' %}
+
+    <!-- <section class="recommend sec">
       <h2>最近見た商品</h2>
       <div class="collection-wrap flex">
         <a href="#" class="product_card">
@@ -109,5 +110,5 @@
         </a>
   
       </div>
-    </section>
+    </section> -->
   </main>
