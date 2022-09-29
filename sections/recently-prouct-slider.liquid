@@ -25,7 +25,7 @@
   </div>
   
   {%- comment -%} ログイン時のみ発動 {%- endcomment -%}
-  {% if customer %}
+  <!-- {% if customer %} -->
     {%- comment -%} 商品カード {%- endcomment -%}
     {% raw %}
       <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
@@ -98,7 +98,7 @@
         })();
       }, false);
     </script>
-  {% endif %}
+  <!-- {% endif %} -->
   
   {% schema %}
   {
