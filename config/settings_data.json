@@ -228,7 +228,7 @@
       "section-collection": {
         "type": "section-collection",
         "settings": {
-          "toppage_collection": "トップページコレクション"
+          "toppage_collection": "toppage-collection"
         }
       },
       "footer-custom": {
@@ -248,13 +248,13 @@
           "4743eb46-eae1-4ddf-8c14-87485cbb0aa8": {
             "type": "featured_collection",
             "settings": {
-              "toppage_collection": "トップページコレクション"
+              "toppage_collection": "toppage-collection"
             }
           },
           "1dd3303c-c4da-40a7-9331-6416f99ed181": {
             "type": "featured_collection",
             "settings": {
-              "toppage_collection": "トップページコレクション"
+              "toppage_collection": "toppage-collection"
             }
           },
           "d32d86f9-5735-4bcf-a17a-358490174cb3": {
