@@ -4,73 +4,82 @@
       <div class="product__post">
         <div class="ProductImage">
           <ul class="gallery">
-            {% assign current_variant = product.selected_or_first_available_variant %}
-            {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-            {% for big_image in product.images %}
-            <li><img src="{{ image.src | img_url: 'compact' }}" alt=""></li>
+            {% for image in product.images %}
+              <li><img src="{{ image.src | img_url: 'large' }}" alt=""></li>
             {% endfor %}
           </ul>
           <ul class="choice-btn flex slideItemImage">
-            <li><img src="img/new/product-1.webp" alt=""></li>
-            <li><img src="img/new/product-2.webp" alt=""></li>
-            <li><img src="img/new/product-3.webp" alt=""></li>
+            {% for image in product.images %}
+              <li><img src="{{ image.src | img_url: 'large' }}" alt=""></li>
+            {% endfor %}
           </ul>
         </div>
-        
-        
       </div>
 
       <div class="product__detail">
         <div class="product__detail__stickey">
 
           <div class="product__detail__main">
-            <p class="maison">ショップ</p>
-            <h2>商品1</h2>
-            <p class="price">¥2,700</p>
+            <p class="maison">{{ product.vendor }}</p>
+            <h2>{{ product.title }}</h2>
+            <p class="price">{{ product.price | money }}</p>
           </div>
           <div class="product__detail__text">
-            <p>チョコレートをたっぷり使用し、小麦粉不使用でチョコレート・バター・卵のみでリッチに仕上げました。カカオニブとレアに焼き上げたガトーショコラの食感が絶妙。外はさっくり、中はとろりレアに。</p>
             <p>
-              当店のロングセラーの逸品。<br>
-              お手土産や贈り物にも喜ばれます。
-            </p>
-            <a href="#">美味しい秘密はこちらから！</a>
-            <p>
-              ※以下の期間熨斗の対応をお断りさせていただいております。何卒ご了承頂きますようお願い申し上げます。<br>中止期間：2022年1月10日〜3月14日ご注文分
-            </p>
-            <p>
-              ※ 住所不備、物流の状況、道路状況、天候、その他の事由によりご希望の到着日に沿いかねる場合がございます。余裕をもったご到着日のご指定をお勧めしております。
+              {{ product.content }}
             </p>
           </div>
-          <div class="share flex">
+          <!-- <div class="share flex">
             <p class="mini">シェア</p>
             <a href="#"></a>
             <a href="#"></a>
             <a href="#"></a>
-          </div>
-          <form action="#" class="product__wrap">
-          <label for="#">お渡し用袋</label>
-          <select name="" id="">
-            <option value="不要">不要</option>
-            <option value="要">要</option>
-          </select>
-        </form>
-        <div class="counter">
-          <span><i class="fas fa-minus"></i></span>
-          <span>1</span>
-          <span><i class="fas fa-plus"></i></span>
-        </div>
-        <button href="#" class="Btn02 bgleft02">
-          <span>カートに追加する</span>
-        </button>
-        <p class="alert">あと<span>7時間0分</span>以内のご注文確定で3月02日（水）〜3月03日(木)の間に商品を受け取る</p>
+          </div> -->
+
+
+<form method="post" action="/cart/add" enctype="multipart/form-data">
+
+  <select name="id">
+    {%- for variant in product.variants -%}
+      <option value="{{ variant.id }}">{{ variant.title | escape }}</option>
+    {%- endfor -%}
+  </select>
+
+
+    <div class="qtydiv counter">
+      <div class="qtybox">
+        <span class="btnqty qtyminus icon icon-minus"><i class="fas fa-minus"></i></span>
+        <span><input type="text" id="quantity" name="quantity" value="1" min="1" class="quantity-selector quantity-input" readonly=""></span>
+        <span class="btnqty qtyplus icon icon-plus"><i class="fas fa-plus"></i></span>
+      </div>
+  </div>
+
+  <input type="hidden" name="id" value={{ product.variants.first.id }}>
+
+  {% assign current_variant = product.selected_or_first_available_variant %}
+  {% if current_variant.inventory_quantity > 0 %}
+    <button href="#" class="Btn02 bgleft02">
+      <span>カートに追加する</span>
+    </button>
+    {% if current_variant.inventory_quantity < 10 %}
+      <span style="color: red;">残り在庫{{ current_variant.inventory_quantity }}個です</span>
+    {% endif %}
+  {% else %}
+  <div class ="Btn02"><span>在庫なし</span></div>
+  {% endif %}
+</form>
+
+        <p class="alert">あと<span>7時間</span>以内のご注文確定で{{ 'today' | date: '%m月%d日' }}〜{{ 'today' | date: '%s' | plus: 86400 | date: '%m月%d日' }}の間に配送</p>
       </div>
       </div>
     </div>
-
   </section>
 
-  <section class="recommend sec">
+ <section class="2022_new_collection sec">
+  <h2>おすすめ商品</h2>
+  {% section 'section-collection' %}
+
+  <!-- <section class="recommend sec">
     <h2>おすすめ商品</h2>
     <div class="collection-wrap flex">
       <a href="#" class="product_card">
@@ -98,5 +107,5 @@
         <p class="Btn bgleft"><span>詳細を見る</span></p>
       </a>
     </div>
-    </section>
+    </section> -->
 </main>
