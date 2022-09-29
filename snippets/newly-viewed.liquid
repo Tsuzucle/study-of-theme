@@ -1,44 +1,97 @@
 {{ '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' | script_tag }}
 {{ 'jquery.products.min.js' | asset_url | script_tag }}
 
-<div class="clearfix"></div>
+<<!-- product-recently-viewed -->
+<div class="product-recently-viewed collection-slider">
+  <div class="container">
+    <h2 class="product-recently-viewed__title section__title">最近チェックした商品</h2>
 
-  <div class="product-template__container page-width head-room">
-        <aside class="grid">
-          <div class="grid__item">
-            <div id="recently-viewed-products" class="collection clearfix " >
-             <header class="section-header">
-              <h2 class="section-header__title border-bottom">Recently Viewed Products</h2>         
-             </header>  
-            </div>
-          </div>
-        </aside>  
+    <ul id="js-recentlySliderBody" class="js-recentlySlider collection-slider__list product-recently-viewed__list">
+
+      {% unless customer %}
+        {%- comment -%} 未ログイン時 {%- endcomment -%}
+        <p id="wishlist-empty-text"
+          style="padding: 60px 0; text-align: center;min-height: 320px; display: flex; align-items: center;">
+          まだ最近チェックした商品がありません
+        </p>
+      {% endunless %}
+
+    </ul>
   </div>
-{% assign grid_item_width = 'small--one-half medium-up--one-quarter' %}
-   <div class="grid grid--uniform grid--view-items leg-room">
-      
-      <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
-      <div class="grid__item small--one-half medium-up--one-quarter"  itemscope itemtype="http://schema.org/Product" >
-      <div id="product-${handle}" class="products"}>
-        <div class="image">
-          <a href="${url}">
-            <img src="${Shopify.Products.resizeImage(featured_image, "medium")}" />
+</div>
+
+{%- comment -%} ログイン時のみ発動 {%- endcomment -%}
+{% if customer %}
+  {%- comment -%} 商品カード {%- endcomment -%}
+  {% raw %}
+    <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
+      <li class="featured-collection-slider__item collection-slider__item">
+        <div class="product-card">
+          <a href="${url}" class="product-card__link">
+            <div class="product-card__head">
+              <img src="${Shopify.Products.resizeImage(featured_image, "master")}" alt="${title}">
+            </div>
+            <div class="product-card__body">
+              <h3 class="product-card__title">${title}</h3>
+              <p class="product-card__price">
+                ${(price / 100).toLocaleString()}
+                <span class="tax">（税込）</span>
+              </p>
+            </div>
           </a>
         </div>
-        <div class="details">
-          <a href="${url}">
-            <span class="title">${title}</span>
+      </li>
+    </script>
+  {% endraw %}
 
-            <!--Add Price Code-->
-    
 
-          </a>
-        </div>
-      </div>
-      </div>
-      </script>
+  {%- comment -%} コントロールjs {%- endcomment -%}
+  <script>
+    window.addEventListener( 'load', function(){
+      const recentlyViewController = (function(){
 
-      <script>
-      Shopify.Products.showRecentlyViewed( { howManyToShow:8 } );
-      </script>
-	</div>
+        // クッキーからデータを取得する
+        let recentlyItems = jQuery.cookie('shopify_recently_viewed');
+
+        // 閲覧履歴がある時 クッキーにデータがある時
+        if(recentlyItems != null ) {
+          Shopify.Products.showRecentlyViewed({
+            howManyToShow: 8,// 表示する商品数を変更できます。
+            wrapperId: 'js-recentlySliderBody',
+            onComplete: function() {
+              // データが読み込まれた後発火させたい時
+              $('#js-recentlySliderBody').slick({
+                autoplay: false,
+                dots: false,
+                arrows: true,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                infinite: false,
+                prevArrow: '<button class="slick-prev"><span class="slick-arrow__inner"></span></button>',
+                nextArrow: '<button class="slick-next"><span class="slick-arrow__inner"></span></button>',
+                responsive: [
+                  {
+                    breakpoint: 480,
+                    settings: {
+                      slidesToShow: 2,
+                    },
+                  },
+                ],
+              });
+
+              // 非表示にしているアイテムを表示させる
+              let lists = Array.from(document.querySelectorAll('li.recently-slider__item'));
+              lists.forEach((item) => {
+                item.style.display = "block";
+              });
+            }
+          });
+        } else {
+          // 閲覧履歴がない時の処理 クッキーにデータがない時
+          document.getElementById('js-recentlySliderBody').insertAdjacentHTML("afterbegin",`<p id="wishlist-empty-text" style="padding: 60px 0; text-align: center;min-height: 320px; display: flex; align-items: center;">まだ最近チェックした商品がありません</p>`);
+        }
+
+      })();
+    }, false);
+  </script>
+{% endif %}
