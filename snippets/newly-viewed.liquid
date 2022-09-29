@@ -8,20 +8,20 @@
 
     <ul id="js-recentlySliderBody" class="js-recentlySlider collection-slider__list product-recently-viewed__list">
 
-      {% unless customer %}
+      <!-- {% unless customer %} -->
         {%- comment -%} 未ログイン時 {%- endcomment -%}
-        <p id="wishlist-empty-text"
+        <!-- <p id="wishlist-empty-text"
           style="padding: 60px 0; text-align: center;min-height: 320px; display: flex; align-items: center;">
           まだ最近チェックした商品がありません
-        </p>
-      {% endunless %}
+        </p> -->
+      <!-- {% endunless %} -->
 
     </ul>
   </div>
 </div>
 
 {%- comment -%} ログイン時のみ発動 {%- endcomment -%}
-{% if customer %}
+<!-- {% if customer %} -->
   {%- comment -%} 商品カード {%- endcomment -%}
   {% raw %}
     <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
@@ -94,4 +94,4 @@
       })();
     }, false);
   </script>
-{% endif %}
+<!-- {% endif %} -->
