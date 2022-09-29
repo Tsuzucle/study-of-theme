@@ -1,47 +1,42 @@
 {{ '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js' | script_tag }}
 {{ 'jquery.products.min.js' | asset_url | script_tag }}
 
-<!-- product-recently-viewed -->
-<div class="product-recently-viewed collection-slider">
-  <div class="container">
-    <h2 class="product-recently-viewed__title section__title">最近チェックした商品</h2>
+<div class="clearfix"></div>
 
-    <ul id="js-recentlySliderBody" class="js-recentlySlider collection-slider__list product-recently-viewed__list">
-
-      <!-- {% unless customer %} -->
-        {%- comment -%} 未ログイン時 {%- endcomment -%}
-        <!-- <p id="wishlist-empty-text"
-          style="padding: 60px 0; text-align: center;min-height: 320px; display: flex; align-items: center;">
-          まだ最近チェックした商品がありません
-        </p> -->
-      <!-- {% endunless %} -->
-
-    </ul>
+  <div class="product-template__container page-width head-room">
+        <aside class="grid">
+          <div class="grid__item">
+            <div id="recently-viewed-products" class="collection clearfix " >
+              <h2 class="section-header__title border-bottom">Recently Viewed Products</h2>         
+            </div>
+          </div>
+        </aside>  
   </div>
-</div>
-
-{%- comment -%} ログイン時のみ発動 {%- endcomment -%}
-<!-- {% if customer %} -->
-  {%- comment -%} 商品カード {%- endcomment -%}
-  {% raw %}
-    <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
-      <li class="featured-collection-slider__item collection-slider__item">
-        <div class="product-card">
-          <a href="${url}" class="product-card__link">
-            <div class="product-card__head">
-              <img src="${Shopify.Products.resizeImage(featured_image, "master")}" alt="${title}">
-            </div>
-            <div class="product-card__body">
-              <h3 class="product-card__title">${title}</h3>
-              <p class="product-card__price">
-                ${(price / 100).toLocaleString()}
-                <span class="tax">（税込）</span>
-              </p>
-            </div>
+{% assign grid_item_width = 'small--one-half medium-up--one-quarter' %}
+   <div class="grid grid--uniform grid--view-items leg-room">
+      
+      <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
+      <div class="grid__item small--one-half medium-up--one-quarter"  itemscope itemtype="http://schema.org/Product" >
+      <div id="product-${handle}" class="products"}>
+        <div class="image">
+          <a href="${url}">
+            <img src="${Shopify.Products.resizeImage(featured_image, "medium")}" />
           </a>
         </div>
-      </li>
-    </script>
-  {% endraw %}
+        <div class="details">
+          <a href="${url}">
+            <span class="title">${title}</span>
 
-<!-- {% endif %} -->
+            <!--Add Price Code-->
+    
+
+          </a>
+        </div>
+      </div>
+      </div>
+      </script>
+
+      <script>
+      Shopify.Products.showRecentlyViewed( { howManyToShow:8 } );
+      </script>
+	</div>
