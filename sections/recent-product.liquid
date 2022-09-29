@@ -12,7 +12,7 @@
   
       <ul id="js-recentlySliderBody" class="js-recentlySlider collection-slider__list product-recently-viewed__list">
   
-                  {%- comment -%} 未ログイン時 {%- endcomment -%}
+      {%- comment -%} 未ログイン時 {%- endcomment -%}
         <!-- {% unless customer %}
           <p id="wishlist-empty-text"
             style="padding: 60px 0; text-align: center; min-height: 320px; display: flex; align-items: center;">
@@ -31,22 +31,29 @@
       <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
         <li class="featured-collection-slider__item collection-slider__item">
           <div class="product-card">
-            <a href="${url}" class="product-card__link">
-              <div class="product-card__head">
-                <img src="${Shopify.Products.resizeImage(featured_image, "master")}" alt="${title}">
-              </div>
-              <div class="product-card__body">
-                <h3 class="product-card__title">${title}</h3>
-                <p class="product-card__price">
-                  ${(price / 100).toLocaleString()}
-                  <span class="tax">（税込）</span>
-                </p>
-              </div>
-            </a>
+            <a href="{{ product.url }}" class="product-card__link product_card">
+              <img class="product-card__head" src="{{ product.featured_image.src | img_url: '3000x' }}" alt="">
+              <h3 class="product-card__body">{{ product.title }}</h3>
+              <p class="price product-card__price">{{ product.price | money }}</p>
+              <p class="Btn bgleft"><span>詳細を見る</span></p>
+          </a>
           </div>
         </li>
       </script>
     {% endraw %}
+
+    <!-- <a href="${url}" class="product-card__link">
+      <div class="product-card__head">
+        <img src="${Shopify.Products.resizeImage(featured_image, "master")}" alt="${title}">
+      </div>
+      <div class="product-card__body">
+        <h3 class="product-card__title">${title}</h3>
+        <p class="product-card__price">
+          ${(price / 100).toLocaleString()}
+          <span class="tax">（税込）</span>
+        </p>
+      </div>
+    </a> -->
   
   
     {%- comment -%} コントロールjs {%- endcomment -%}
