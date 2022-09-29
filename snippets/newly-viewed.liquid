@@ -3,40 +3,44 @@
 
 <div class="clearfix"></div>
 
-  <div class="product-template__container page-width head-room">
-        <aside class="grid">
-          <div class="grid__item">
-            <div id="recently-viewed-products" class="collection clearfix " >
-              <h2 class="section-header__title border-bottom">Recently Viewed Products</h2>         
+  <div class="product-template__container page-width head-room recommend sec">
+    <h2>最近見た商品</h2>
+            <div id="recently-viewed-products" class=" clearfix collection-wrap flex" >
+
             </div>
-          </div>
-        </aside>  
   </div>
-{% assign grid_item_width = 'small--one-half medium-up--one-quarter' %}
-   <div class="grid grid--uniform grid--view-items leg-room">
       
       <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
-      <div class="grid__item small--one-half medium-up--one-quarter"  itemscope itemtype="http://schema.org/Product" >
-      <div id="product-${handle}" class="products"}>
-        <div class="image">
-          <a href="${url}">
-            <img src="${Shopify.Products.resizeImage(featured_image, "medium")}" />
+        
+          <a href="${url}" class="product_card">
+            <img src="${Shopify.Products.resizeImage(featured_image, "large")}" />
+            <h3>${title}</h3>
+            <p class="price">¥${price/100}</p>
+            <p class="Btn bgleft"><span>詳細を見る</span></p>
           </a>
-        </div>
-        <div class="details">
-          <a href="${url}">
-            <span class="title">${title}</span>
-
-            <!--Add Price Code-->
     
-
-          </a>
-        </div>
-      </div>
-      </div>
       </script>
 
       <script>
       Shopify.Products.showRecentlyViewed( { howManyToShow:8 } );
       </script>
 	</div>
+
+  <!-- <div class="grid__item small--one-half medium-up--one-quarter"  itemscope itemtype="http://schema.org/Product" >
+    <div id="product-${handle}" class="products"}>
+      <div class="image">
+        <a href="${url}">
+          <img src="${Shopify.Products.resizeImage(featured_image, "medium")}" />
+        </a>
+      </div>
+      <div class="details">
+        <a href="${url}">
+          <span class="title">${title}</span>
+
+          <!--Add Price Code-->
+  
+
+        <!-- </a>
+      </div>
+    </div>
+    </div> -->
