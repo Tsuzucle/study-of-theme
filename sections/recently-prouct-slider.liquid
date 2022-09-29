@@ -28,12 +28,12 @@
   <!-- {% if customer %} -->
     {%- comment -%} 商品カード {%- endcomment -%}
     {% raw %}
-      <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl">
+      <script id="recently-viewed-product-template"  type="text/x-jquery-tmpl"></script>
         <li class="featured-collection-slider__item collection-slider__item">
           <div class="product-card">
             <a href="${url}" class="product-card__link">
               <div class="product-card__head">
-                <img src="${Shopify.Products.resizeImage(featured_image, "master")}" alt="${title}">
+                <img src="${ Shopify.Products.resizeImage(featured_image , "master")}" alt="${title}">
               </div>
               <div class="product-card__body">
                 <h3 class="product-card__title">${title}</h3>
@@ -45,7 +45,7 @@
             </a>
           </div>
         </li>
-      </script>
+      
     {% endraw %}
   
   
