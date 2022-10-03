@@ -14,12 +14,13 @@
         </p>
       </div>
 
-      <form method="post" action="/cart/add" enctype="multipart/form-data">
+      <form method="post" action="/cart/add" enctype="multipart/form-data" class="product__wrap">
 
-        <select name="id">
-          {%- for variant in product.variants -%}
-          <option value="{{ variant.id }}">{{ variant.title | escape }}</option>
-          {%- endfor -%}
+        <label for="#">お渡し袋</label>
+        <select name="" id="">
+          {% for variant in product.variants %}
+          <option value="{{ variant.id }}">{{ variant.title }}</option>
+          {% endfor%}
         </select>
 
         <div class="qtydiv counter">
